@@ -4,7 +4,7 @@
  * Plugin Name: StreamCast – bring live radio to your site with a sleek player
  * Plugin URI:  https://wordpress.org/plugins/streamcast
  * Description: Play iceCast, Shoutcast, Radioco, Radionomy Live stream in Wordpress.
- * Version: 2.4.6
+ * Version: 2.4.7
  * Author: bPlugins
  * Author URI: http://bPlugins.com
  * License: GPLv2
@@ -26,7 +26,7 @@ if (function_exists('str_fs')) {
     // Some Setup
     define('STREAMCAST_PLUGIN_DIR', plugin_dir_url(__FILE__));
     define('STREAMCAST_PLUGIN_PATH', plugin_dir_path(__FILE__));
-    define('STREAMCAST_PLUGIN_VERSION', '2.4.6');
+    define('STREAMCAST_PLUGIN_VERSION', '2.4.7');
     define('STREAMCAST_PLUGIN_FILE', __FILE__);
     define('STREAMCAST_HAS_PRO', 'streamcast-premium/streamcast.php' === plugin_basename(__FILE__));
 

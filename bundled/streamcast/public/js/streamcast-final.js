@@ -5819,6 +5819,8 @@ $jscomp.polyfill(
 );
 var mrx24gx = mrx24gx || [];
 mrx24gx.push("ftinc");
+// Run this bundled copy instead of loading hosted.muses.org
+1 == mrx24gx.length && mrx24gx.push("bundled");
 if (2 == mrx24gx.length) {
   (function (d, q) {
     function k(a, b) {
@@ -7587,7 +7589,7 @@ if (2 == mrx24gx.length) {
       l.container.style.left = a - 3 + "px";
       l.container.style.top = b - 3 + "px";
       l.titleDiv.style.textAlign = d.getTextAlign();
-      l.titleDiv.innerHTML = c;
+      l.titleDiv.textContent = (function(t){if(null==t)return"";t=String(t);if(-1==t.indexOf("<")&&-1==t.indexOf("&"))return t;var p=(new DOMParser).parseFromString(t,"text/html");return p.body&&p.body.textContent||""})(c);
     };
     var Ca = function (a, b) {
       this.timer = null;
@@ -8075,9 +8077,8 @@ if (2 == mrx24gx.length) {
         ((z.initialized = !0),
         /* GA Removed */
         (new G(3e5).run = function () {
-          a.shouldBePlaying() &&
-            ((b.metric1 = a.ui.getPlayTime()),
-            // ga('musesTracker.send', 'event', 'play', 'playing', b));
+          a.shouldBePlaying() && (b.metric1 = a.ui.getPlayTime());
+          // ga('musesTracker.send', 'event', 'play', 'playing', b);
         }));
     };
     var B = (d.muses.UI = function (a, b) {
@@ -9171,18 +9172,19 @@ if (2 == mrx24gx.length) {
         this.container.appendChild(this.innerDIV);
       },
       setText: function (a) {
+        a = (function(t){if(null==t)return"";t=String(t);if(-1==t.indexOf("<")&&-1==t.indexOf("&"))return t;var p=(new DOMParser).parseFromString(t,"text/html");return p.body&&p.body.textContent||""})(a);
         if ("" == a) this.container.style.opacity = "0";
         else {
           this.container.style.opacity = "1";
           var b =
-            a + " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + a;
-          this.innerDIV.innerHTML != a &&
-            this.innerDIV.innerHTML != b &&
-            ((this.innerDIV.innerHTML = a),
+            a + " \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0" + a;
+          this.innerDIV.textContent != a &&
+            this.innerDIV.textContent != b &&
+            ((this.innerDIV.textContent = a),
             this.disableScrolling(),
             this.container.scrollWidth - 6 > this.styleWidth &&
               ((this.scrollDiff = this.container.scrollWidth),
-              (this.innerDIV.innerHTML = b),
+              (this.innerDIV.textContent = b),
               (this.scrollDiff -= this.container.scrollWidth),
               this.scroll()));
         }

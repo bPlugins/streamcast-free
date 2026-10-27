@@ -45,8 +45,53 @@ class AJAX {
 
 		$body = wp_remote_retrieve_body( $response );
 
-		// Return the data
-		wp_send_json_success( $body );
+		// Return only the title fields the player shows, without markup (stored XSS)
+		wp_send_json_success( $this->sanitize_stream_metadata( $url, $body ) );
+	}
+
+	/**
+	 * Strip the remote response down to plain-text title data, in the same shape the player expects
+	 *
+	 * Shoutcast /currentsong is returned as plain text. Icecast /status-json.xsl is returned as a JSON
+	 * string holding only icestats.source title / song / server_name.
+	 */
+	private function sanitize_stream_metadata( $url, $body ) {
+		$path = (string) wp_parse_url( $url, PHP_URL_PATH );
+
+		if ( ! preg_match( '#/status-json\.xsl$#i', $path ) ) {
+			return wp_strip_all_tags( (string) $body );
+		}
+
+		$data = json_decode( (string) $body, true );
+		if ( ! is_array( $data ) || ! isset( $data['icestats'] ) || ! is_array( $data['icestats'] ) ) {
+			return '';
+		}
+
+		$icestats = array();
+		$source   = isset( $data['icestats']['source'] ) ? $data['icestats']['source'] : null;
+
+		if ( is_array( $source ) ) {
+			// Multi-mount servers send a list of sources, single-mount servers one object
+			$icestats['source'] = wp_is_numeric_array( $source )
+				? array_values( array_map( array( $this, 'sanitize_icecast_source' ), array_filter( $source, 'is_array' ) ) )
+				: $this->sanitize_icecast_source( $source );
+		}
+
+		return wp_json_encode( array( 'icestats' => (object) $icestats ) );
+	}
+
+	/**
+	 * Keep only the Icecast source fields the player reads, as plain text
+	 */
+	private function sanitize_icecast_source( $source ) {
+		$clean = array();
+		foreach ( array( 'title', 'song', 'server_name' ) as $key ) {
+			if ( isset( $source[ $key ] ) && is_scalar( $source[ $key ] ) ) {
+				$clean[ $key ] = wp_strip_all_tags( (string) $source[ $key ] );
+			}
+		}
+
+		return (object) $clean;
 	}
 
 	/**

@@ -234,7 +234,7 @@ Please report security bugs found in the source code of the StreamCast plugin th
 == Source Code ==
 
 You can find the source code, report bugs, and contribute to the development of this plugin on our GitHub repository: 
-[**StreamCast on GitHub**](https://github.com/bPlugins/streamcast-wp)
+[**StreamCast on GitHub**](https://github.com/bPlugins/streamcast-free)
 
 == External Services ==
 
@@ -322,9 +322,11 @@ This plugin bundles the following third-party JavaScript/PHP libraries.
 
 == Changelog ==
 
-= 2.4.7 - 26 October 2026 =
+= 2.4.7 - 27 October 2026 =
 * **Security:** Completed the SSRF fix from 2.4.6 (CVE-2026-62030).
 * **Fix:** Restored now-playing metadata for streams on ports like 8000.
+* **Security:** Fixed a stored XSS in the Standard player's title and welcome message.
+* **Fix:** Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).
 
 = 2.4.6 - 15 October 2026 =
 * **Fix:** Fixed a Server-Side Request Forgery (SSRF) vulnerability in the stream metadata AJAX endpoint.

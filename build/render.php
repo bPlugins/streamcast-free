@@ -7,6 +7,8 @@ $streamcast_stream_url            = $attributes['radioPlayer']['streamURL'];
 $streamcast_stream_port           = $attributes['radioPlayer']['streamPort'];
 $streamcast_player_type           = $attributes['radioPlayer']['playerType'];
 $streamcast_welcome_message       = $attributes['radioPlayer']['welcomeMessage'];
+// The player shows these as text, so markup is never needed (stored XSS)
+$streamcast_welcome_message       = is_string( $streamcast_welcome_message ) ? wp_strip_all_tags( $streamcast_welcome_message ) : $streamcast_welcome_message;
 $streamcast_skin                  = $attributes['radioPlayer']['skin']['name'];
 $streamcast_width                 = $attributes['radioPlayer']['skin']['width'];
 $streamcast_height                = $attributes['radioPlayer']['skin']['height'];
@@ -34,6 +36,7 @@ $streamcast_dynamic_player_styles = streamcast_get_player_position_styles( $id, 
 
 if ( $streamcast_skin !== 'b_circle' && $streamcast_player_type === 'standard' ) {
 	$streamcast_station_name          = $attributes['radioPlayer']['stationName'];
+	$streamcast_station_name          = is_string( $streamcast_station_name ) ? wp_strip_all_tags( $streamcast_station_name ) : $streamcast_station_name;
 	$streamcast_fetch_name_from_url   = $attributes['radioPlayer']['fetchNameFromUrl'];
 
 	?>

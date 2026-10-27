@@ -104,11 +104,13 @@ export const welcomeInfo = ( adminUrl ) => {
 		},
 		changelogs: [
 			{
-				version: '2.4.7 - 26 October 2026',
+				version: '2.4.7 - 27 October 2026',
 				type: 'update',
 				list: [
 					'Security: Completed the SSRF fix from 2.4.6 (CVE-2026-62030).',
 					'Fixed: Restored now-playing metadata for streams on ports like 8000.',
+					"Security: Fixed a stored XSS in the Standard player's title and welcome message.",
+					"Fixed: Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).",
 				],
 			},
 			{

@@ -1,0 +1,186 @@
+# StreamCast — Live Radio Player for WordPress
+
+![StreamCast Banner](https://ps.w.org/streamcast/assets/banner-772x250.png)
+
+[![WordPress Support](https://img.shields.io/badge/WordPress-6.2+-blue.svg?style=flat-square&logo=wordpress)](https://wordpress.org/plugins/streamcast/)
+[![PHP Support](https://img.shields.io/badge/PHP-7.1+-777bb4.svg?style=flat-square&logo=php)](./readme.txt)
+[![GPLv2 License](https://img.shields.io/badge/License-GPLv2-green.svg?style=flat-square)](./readme.txt)
+[![Stable Version](https://img.shields.io/badge/Version-2.4.7-blue.svg?style=flat-square)](./readme.txt)
+
+**StreamCast** puts a live radio stream on any WordPress page in minutes. Play **IceCast**, **Shoutcast**, **RadioCo**, **RadioJar**, **Radionomy** and other streams with a responsive player, using a Gutenberg block or a shortcode, no code required.
+
+> This repository is the **free version** published on [WordPress.org](https://wordpress.org/plugins/streamcast/). The Pro version lives in a separate repository and is distributed through Freemius.
+
+---
+
+## 🎬 How To Use It
+
+[![StreamCast quick guide](https://img.youtube.com/vi/ad_LKLe_YQg/hqdefault.jpg)](https://www.youtube.com/watch?v=ad_LKLe_YQg)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=ad_LKLe_YQg" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/YouTube-Watch%20Quick%20Guide-red?style=for-the-badge&logo=youtube" alt="Watch the StreamCast quick guide on YouTube" />
+  </a>
+</p>
+
+---
+
+## 🚀 Key Features
+
+### 💎 Core Functionality (Free)
+- **Responsive Radio Player**: Works on desktop, tablet and mobile.
+- **Major Stream Providers**: IceCast, Shoutcast, RadioJar, Radionomy, RadioCo and more.
+- **No-Code Setup**: Add a player with the Gutenberg block or a shortcode.
+- **Player Types**: Minimal, Standard (Muses skins, including B Circle), Advanced, Ultimate, EchoStream, AuroraPlay and Wooden.
+- **Now-Playing Metadata**: Station name and current song fetched from Shoutcast (`/currentsong`) and Icecast (`/status-json.xsl`) servers, including streams on ports like 8000.
+- **Customizable Skins & Colors**: Background colors and player styles, also via shortcode attributes.
+- **Cross-Browser Compatible**: Chrome, Firefox, Safari and Edge.
+- **Lightweight & Fast**: Assets load only what the player needs.
+
+### 👑 Premium Power (Pro)
+- **85+ Radio Player Skins**: Advanced player UI and a professional skin library.
+- **Automatic Station Name From Stream URL**: Reads ICY headers and Icecast/Shoutcast status pages server-side.
+- **Brand Colors & Typography**: Color pickers, text colors and typography controls.
+- **Ultimate Player Type** and more stream compatibility.
+- **Custom CSS Styling**.
+- **Priority Support & Future Updates**.
+
+👉 [**Get StreamCast Pro**](https://bplugins.com/products/streamcast-radio-player/pricing/)
+
+---
+
+## ⚠️ Important Note: HTTPS Streams
+
+Browsers (Chrome 80+) block an **HTTP** stream on an **HTTPS** website. Use the same protocol for the site and the stream, preferably HTTPS. [More info](https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html)
+
+---
+
+## 🛠 Technical Stack
+
+- **Frontend Framework:** [React](https://react.dev/) for the Gutenberg block, the frontend players and the admin dashboard.
+- **Build System:** `@wordpress/scripts` (Webpack) for block bundling, Gulp for packaging the release zip.
+- **Backend:** PHP, Composer classmap autoloading for the classes in `/inc`.
+- **Settings UI:** Codestar Framework for the classic "Radio Players" metabox.
+- **Licensing & Analytics:** Freemius SDK.
+
+---
+
+## 📚 Third-Party Libraries
+
+- **[Muses Radio Player](https://www.muses.org/)**: The Standard player. A bundled copy (`assets/vendor/muses-player/mrp.js`) is used instead of `hosted.muses.org`, see [Security Notes](#-security-notes).
+- **[Plyr](https://github.com/sampotts/plyr)** (MIT): Powers the B Circle skin and the `[stream]` shortcode player.
+- **jQuery musicPlayer** and **Muses** copies are bundled in `public/js/streamcast-final.js`.
+- **[Codestar Framework](https://codestarframework.com/)** (GPL): Classic metabox settings (`vendor/codestar-framework`).
+- **[Freemius SDK](https://freemius.com/)**: Licensing, opt-in and analytics (`vendor/freemius`).
+- **[React](https://react.dev/)** (MIT): Block editor, frontend players and dashboard.
+
+---
+
+## 💻 Developer Guide
+
+### Directory Structure
+- **`/src`**: Block source (React, SCSS, `block.json`, `render.php`).
+	- **`/Components/Backend`**: Block editor UI (`Edit.js`, settings panels).
+	- **`/Components/Frontend`**: Frontend React app mounted by `view.js`.
+	- **`/Components/Common/Players`**: One component per player type.
+	- **`/admin-dashboard`**: React admin dashboard; `utils/data.js` holds the changelog shown there.
+- **`/inc`**: PHP classes (block, shortcodes, AJAX metadata proxy, metaboxes, admin). Autoloaded by Composer.
+- **`/build`**: Compiled assets. Generated by `npm run build`, do not edit.
+- **`/assets`**, **`/public`**: Static CSS, JS, images and vendored players.
+- **`/vendor`**: Composer autoloader, Codestar Framework, Freemius SDK (committed, not installed by Composer).
+- **`/bundled`**, **`/zip`**: Release output from `npm run build`.
+- **`streamcast.php`**: Main plugin file.
+
+### Requirements
+- Node.js 18+ and npm
+- PHP 7.1+ and WordPress 6.2+
+- [bpl-tools](https://github.com/bPlugins/bpl-tools) cloned into the same `plugins` directory (shared dashboard components)
+- WP-CLI (for `npm run i18n`) and Composer (only when classes change)
+
+### Development Workflow
+1. **Clone the repository** into your local WordPress `plugins` directory.
+2. **Clone [bpl-tools](https://github.com/bPlugins/bpl-tools)** next to it.
+3. **Install dependencies**:
+	```bash
+	npm install
+	```
+4. **Start development watch mode** (rebuilds on every change in `/src`):
+	```bash
+	npm start
+	```
+5. **Create a production build and the release zip**:
+	```bash
+	npm run build
+	```
+
+### npm Scripts
+
+| Command | What it does |
+|---|---|
+| `npm start` | Watch mode for `/src`. |
+| `npm run build` | Webpack build, regenerates `languages/streamcast.pot`, copies release files to `bundled/streamcast/` and creates `zip/streamcast.zip`. |
+| `npm run i18n` | Regenerates the `.pot` file only. |
+| `npm run lint:js` / `npm run lint:css` | Lint with the WordPress coding standards. |
+| `npm run format` | Format files with the WordPress style. |
+
+Only the folders listed in `gulpfile.js` (`assets`, `build`, `inc`, `languages`, `public`, `vendor`, `iframe.html`, `readme.txt`, `streamcast.php`) go into the zip, so notes and dev files in the root are never shipped.
+
+### Composer
+Classes in `/inc` are loaded through a Composer classmap. After **adding, renaming or removing a class file** in `/inc`, run:
+```bash
+composer dump-autoload
+```
+No other Composer command is needed; there are no Composer packages.
+
+### Data Flow & Lifecycle
+1. **Editor:** `src/Components/Backend/Edit.js` manages the `radioPlayer` block attribute.
+2. **Database:** Attributes are saved as JSON in the `<!-- wp:scb/streamcast-block ... -->` comment.
+3. **Frontend (PHP):** `render.php` prints the Standard (Muses) player inline, or a `div` with `data-attributes` for every other player type.
+4. **Frontend (JS):** `view.js` mounts the React player from `data-attributes`.
+5. **Metadata:** The player asks `admin-ajax.php?action=streamcast_fetch_stream` for the song title; the server fetches the Shoutcast/Icecast endpoint and returns plain-text title data.
+
+---
+
+## 🔒 Security Notes
+
+- **Metadata proxy (`inc/class-streamcast-ajax.php`)**: Only `/currentsong` and `/status-json.xsl` URLs are proxied. Every hop, including redirects, must resolve to a public IP (loopback, private, link-local/cloud metadata and CGNAT ranges are refused, on every WordPress version). Only plain-text title fields are returned, never the raw response.
+- **Muses player**: The bundled `mrp.js` and the copy in `streamcast-final.js` render titles with `textContent` and run locally instead of loading `hosted.muses.org`. When updating these files, keep both patches.
+- **Block output**: Station name and welcome message are passed through `wp_strip_all_tags()` and `wp_json_encode()`.
+
+---
+
+## 🚢 Release Checklist
+
+1. Update the version in `streamcast.php` (header and `STREAMCAST_PLUGIN_VERSION`), `readme.txt` (`Stable tag`), `package.json`, `composer.json` and `src/block.json`.
+2. Add the changelog to `readme.txt` and `src/admin-dashboard/utils/data.js`.
+3. Run `npm run build`.
+4. Commit `bundled/streamcast/` contents to the WordPress.org SVN `trunk/`, then tag the version.
+
+---
+
+## 🔌 Developer API
+
+### Gutenberg Block
+`scb/streamcast-block`
+
+### Shortcodes
+Player created under **Radio Players** in wp-admin:
+```
+[radio_player id="123"]
+```
+Simple Plyr player for a stream URL:
+```
+[stream url="YOUR_STREAM_URL"]
+[stream url="YOUR_STREAM_URL" background="#333333"]
+```
+
+---
+
+## 🔗 Useful Links
+- [Live Demo](https://bplugins.com/products/streamcast-radio-player/#demos)
+- [Documentation](https://bplugins.com/docs/streamcast-radio-player/)
+- [Support Forum](https://wordpress.org/support/plugin/streamcast/)
+- [Upgrade to Pro](https://bplugins.com/products/streamcast-radio-player/pricing/)
+
+---
+*Developed by [bPlugins](https://bplugins.com)*
