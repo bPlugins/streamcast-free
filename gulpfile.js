@@ -23,6 +23,7 @@ function bundle() {
 				'public/**/*',
 				'vendor/**/*',
 				'iframe.html',
+				'composer.json',
 				'readme.txt',
 				'streamcast.php',
 			],

@@ -327,6 +327,7 @@ This plugin bundles the following third-party JavaScript/PHP libraries.
 * **Fix:** Restored now-playing metadata for streams on ports like 8000.
 * **Security:** Fixed a stored XSS in the Standard player's title and welcome message.
 * **Fix:** Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).
+* **Tweak:** Resolved WordPress Plugin Check warnings.
 
 = 2.4.6 - 15 October 2026 =
 * **Fix:** Fixed a Server-Side Request Forgery (SSRF) vulnerability in the stream metadata AJAX endpoint.

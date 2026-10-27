@@ -111,6 +111,7 @@ export const welcomeInfo = ( adminUrl ) => {
 					'Fixed: Restored now-playing metadata for streams on ports like 8000.',
 					"Security: Fixed a stored XSS in the Standard player's title and welcome message.",
 					"Fixed: Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).",
+					'Tweak: Resolved WordPress Plugin Check warnings.',
 				],
 			},
 			{
