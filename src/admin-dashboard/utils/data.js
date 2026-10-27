@@ -105,29 +105,29 @@ export const welcomeInfo = ( adminUrl ) => {
 		changelogs: [
 			{
 				version: '2.4.7 - 27 October 2026',
-				type: 'update',
+				type: 'Fix',
 				list: [
-					'Security: Completed the SSRF fix from 2.4.6 (CVE-2026-62030).',
-					'Fixed: Restored now-playing metadata for streams on ports like 8000.',
-					"Security: Fixed a stored XSS in the Standard player's title and welcome message.",
-					"Fixed: Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).",
-					'Tweak: Resolved WordPress Plugin Check warnings.',
+					'<strong>Security:</strong> Completed the SSRF fix from 2.4.6 (CVE-2026-62030).',
+					"<strong>Security:</strong> Fixed a stored XSS in the Standard player's title and welcome message.",
+					'<strong>Fix:</strong> Restored now-playing metadata for streams on ports like 8000.',
+					"<strong>Fix:</strong> Fixed the Standard player's B Circle skin not loading (broken since 2.4.0).",
+					'<strong>Tweak:</strong> Resolved WordPress Plugin Check warnings.',
 				],
 			},
 			{
 				version: '2.4.6 - 15 October 2026',
-				type: 'update',
+				type: 'Fix',
 				list: [
-					'Fixed: Server-Side Request Forgery (SSRF) vulnerability in the stream metadata AJAX endpoint.',
+					'<strong>Fix:</strong> Server-Side Request Forgery (SSRF) vulnerability in the stream metadata AJAX endpoint.',
 				],
 			},
 			{
 				version: '2.4.5 - 25 August 2026',
-				type: 'update',
+				type: 'New',
 				list: [
-					'New: Added a "Where It Plays" panel to the classic editor side column, showing the native block and every page builder the shortcode works in, with one-click shortcode copy.',
-					'New: Added a Pro panel to the side column listing the settings the free build keeps locked, so it is clear what an upgrade unlocks without hunting through the form.',
-					'Update: Made the radio player edit screen easier to work with — the shortcode and placement options are now beside Save instead of buried in the configuration form.',
+					'<strong>New:</strong> Added a "Where It Plays" panel to the classic editor side column, showing the native block and every page builder the shortcode works in, with one-click shortcode copy.',
+					'<strong>New:</strong> Added a Pro panel to the side column listing the settings the free build keeps locked, so it is clear what an upgrade unlocks without hunting through the form.',
+					'<strong>Update:</strong> Made the radio player edit screen easier to work with — the shortcode and placement options are now beside Save instead of buried in the configuration form.',
 				],
 			},
 		],
