@@ -104,6 +104,13 @@ export const welcomeInfo = ( adminUrl ) => {
 		},
 		changelogs: [
 			{
+				version: '2.4.8 - 17 Nov, 2026',
+				type: 'enhancement',
+				list: [
+					'<strong>Enhancement:</strong> Added Black Friday promotional banner and campaign notices.',
+				],
+			},
+			{
 				version: '2.4.7 - 27 October 2026',
 				type: 'Fix',
 				list: [
@@ -119,15 +126,6 @@ export const welcomeInfo = ( adminUrl ) => {
 				type: 'Fix',
 				list: [
 					'<strong>Fix:</strong> Server-Side Request Forgery (SSRF) vulnerability in the stream metadata AJAX endpoint.',
-				],
-			},
-			{
-				version: '2.4.5 - 25 August 2026',
-				type: 'New',
-				list: [
-					'<strong>New:</strong> Added a "Where It Plays" panel to the classic editor side column, showing the native block and every page builder the shortcode works in, with one-click shortcode copy.',
-					'<strong>New:</strong> Added a Pro panel to the side column listing the settings the free build keeps locked, so it is clear what an upgrade unlocks without hunting through the form.',
-					'<strong>Update:</strong> Made the radio player edit screen easier to work with — the shortcode and placement options are now beside Save instead of buried in the configuration form.',
 				],
 			},
 		],

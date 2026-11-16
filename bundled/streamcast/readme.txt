@@ -2,7 +2,7 @@
 Contributors: bplugins, abuhayat, freemius, shamim10
 Tags: live stream, icecast, shoutcast, radio player, audio player
 Tested up to: 7.1
-Stable tag: 2.4.7
+Stable tag: 2.4.8
 Requires PHP: 7.1
 Requires at least: 6.2
 Donate link: https://www.buymeacoffee.com/abuhayat
@@ -321,6 +321,9 @@ This plugin bundles the following third-party JavaScript/PHP libraries.
 ---
 
 == Changelog ==
+
+= 2.4.8 - 17 Nov, 2026 =
+* **Enhancement:** Added Black Friday promotional banner and campaign notices.
 
 = 2.4.7 - 27 October 2026 =
 * **Security:** Completed the SSRF fix from 2.4.6 (CVE-2026-62030).

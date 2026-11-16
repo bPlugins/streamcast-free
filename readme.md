@@ -5,7 +5,7 @@
 [![WordPress Support](https://img.shields.io/badge/WordPress-6.2+-blue.svg?style=flat-square&logo=wordpress)](https://wordpress.org/plugins/streamcast/)
 [![PHP Support](https://img.shields.io/badge/PHP-7.1+-777bb4.svg?style=flat-square&logo=php)](./readme.txt)
 [![GPLv2 License](https://img.shields.io/badge/License-GPLv2-green.svg?style=flat-square)](./readme.txt)
-[![Stable Version](https://img.shields.io/badge/Version-2.4.7-blue.svg?style=flat-square)](./readme.txt)
+[![Stable Version](https://img.shields.io/badge/Version-2.4.8-blue.svg?style=flat-square)](./readme.txt)
 
 **StreamCast** puts a live radio stream on any WordPress page in minutes. Play **IceCast**, **Shoutcast**, **RadioCo**, **RadioJar**, **Radionomy** and other streams with a responsive player, using a Gutenberg block or a shortcode, no code required.
 

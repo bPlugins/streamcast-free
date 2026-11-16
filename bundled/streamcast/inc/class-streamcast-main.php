@@ -140,7 +140,7 @@ class STREAMCAST_Main {
 
 	public function add_action_links($links) {
 		$help_link = '<a href="' . admin_url('edit.php?post_type=streamcast&page=streamcast') . '"><span style="color: #f18500; font-weight: 600;">' . __('Help & Demo\'s', 'streamcast') . '</span></a>';
-		array_unshift($links, $help_link);
+		$links['help_demos'] = $help_link;
 		return $links;
 	}
 
